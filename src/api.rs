@@ -58,9 +58,9 @@ async fn get_all_students(db: web::Data<Database>) -> Result<impl Responder, Api
 #[get("/students/{id}")]
 async fn get_student(
     db: web::Data<Database>,
-    id: web::Path<ObjectId>, // Change the type from String to ObjectId
+    id: web::Path<String>, // Change the type from String to ObjectId
 ) -> Result<impl Responder, ApiError> {
-    let object_id = id.into_inner(); // Extract the ObjectId from the Path
+    let object_id = ObjectId::parse_str(id.as_str()).expect("Not obj id");
     let collection = db.collection::<Student>(COLLECTION);
 
     let student = collection
@@ -74,9 +74,9 @@ async fn get_student(
 #[delete("/students/{id}")]
 async fn delete_student(
     db: web::Data<Database>,
-    id: web::Path<ObjectId>,
+    id: web::Path<String>,
 ) -> Result<impl Responder, ApiError> {
-    let object_id = id.into_inner();
+    let object_id = ObjectId::parse_str(id.as_str()).expect("Not obj id");
     let collection = db.collection::<Student>(COLLECTION);
 
     let result = collection
