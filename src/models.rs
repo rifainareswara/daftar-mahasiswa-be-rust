@@ -16,3 +16,10 @@ pub struct CreateStudentDto {
     pub nim: String,
     pub jurusan: String,
 }
+
+#[derive(Debug, Deserialize)]
+pub struct UpdateStudentDto {
+    pub nama: Option<String>,
+    pub nim: Option<String>,
+    pub jurusan: Option<String>,
+}
