@@ -521,12 +521,10 @@ dependencies = [
  "dotenv",
  "env_logger",
  "futures",
- "log",
  "mongodb",
  "serde",
  "serde_json",
  "thiserror 2.0.12",
- "tokio",
 ]
 
 [[package]]
